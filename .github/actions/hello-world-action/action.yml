@@ -1,10 +1,16 @@
-name: "Example"
-description: "Receives file and generates output"
+# action.yml
+name: 'Hello World'
+description: 'Greet someone and record the time'
 inputs:
-  file-path: # id of input
-    description: "Path to test script"
+  who-to-greet:  # id of input
+    description: 'Who to greet'
     required: true
-    default: "test-file.js"
+    default: 'World'
 outputs:
-  results-file: # id of output
-    description: "Path to results file"
+  time: # id of output
+    description: 'The time we greeted you'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.who-to-greet }}
